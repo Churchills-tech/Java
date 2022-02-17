@@ -1,0 +1,148 @@
+/*
+ * CashRegister class that returns the number
+ *  of coins of a particular type to return
+ */
+
+public class CashRegister {
+	private double purchase;
+	private double payment;
+
+	public static final int QUARTER_VALUE = 30;
+	public static final int DIME_VALUE = 15;
+	public static final int NICKLE_VALUE = 10;
+	public static final int PENNY_VALUE = 1;
+
+	public CashRegister() {
+		this.purchase = 0;
+		this.payment = 0;
+	}
+
+	public CashRegister(double purchase, double payment) {
+		this.purchase = purchase;
+		this.payment = payment;
+	}
+
+	public void recordPurchase(double amount) {
+		purchase = purchase + amount;
+	}
+
+	// Method receivePayment that take cointCount and coin type as argument and add
+	// to payment
+	public void receivePayment(int coinCount, Coin coinType) {
+		payment = payment + coinCount * coinType.getValue();
+	}
+
+	// Method giveChange that takes coin type as argument and returns number of coin
+	// types for the change
+	public int giveChange(Coin coinType) {
+		int change = 0;
+		int coins = 0;
+		change = (int) ((payment - purchase) * 100);
+
+		if (coinType.getType().equals("quarter") && change >= 30)
+			coins = change / QUARTER_VALUE;
+		else if (coinType.getType().equals("nickle") && change >= 10)
+			coins = change / NICKLE_VALUE;
+		else if (coinType.getType().equals("dimes") && change >= 15)
+			coins = change / DIME_VALUE;
+		else if (coinType.getType().equals("penny"))
+			coins = change / PENNY_VALUE;
+
+		return coins;
+	}
+}
+
+
+/*
+ * CashRegisterMain class that extends the CashRegister class 
+ * for the program to be tested from
+ */
+
+public class CashRegisterMain {
+	public static void main(String[] args) {
+		final int QUARTER_VALUE = 30;
+		final int DIME_VALUE = 15;
+		final int NICKEL_VALUE = 10;
+		final int PENNY_VALUE = 1;
+
+		// instance of a CashRegister
+		CashRegister myRegister = new CashRegister();
+		// call recordPurchase
+		myRegister.recordPurchase(0.78);
+
+		// call receivePayment
+		myRegister.receivePayment(4, new Coin(QUARTER_VALUE, "quarter"));
+		myRegister.receivePayment(4, new Coin(NICKEL_VALUE, "nickle"));
+
+		// Call giveChange
+		int myChange = myRegister.giveChange(new Coin(QUARTER_VALUE, "quarter"));
+		System.out.println("Quarters");
+		System.out.println("Change: " + myChange);
+		myChange = myRegister.giveChange(new Coin(DIME_VALUE, "dimes"));
+		System.out.println("Dimes");
+		System.out.println("Change: " + myChange);
+		myChange = myRegister.giveChange(new Coin(NICKEL_VALUE, "nickle"));
+		System.out.println("Nickle");
+		System.out.println("Change: " + myChange);
+		myChange = myRegister.giveChange(new Coin(PENNY_VALUE, "penny"));
+		System.out.println("Penny");
+		System.out.println("Change: " + myChange);
+
+	}
+}
+
+
+/*
+ * Coin Class that modify CashRegister Class so that
+ *  coins can be added to the cash register
+ */
+
+public class Coin {
+	private int aValue;
+	private String aName;
+
+	public static final double QUARTER_VALUE = 0.30;
+	public static final double DIME_VALUE = 0.15;
+	public static final double NICKLE_VALUE = 0.10;
+	public static final double PENNY_VALUE = 0.1;
+
+	public Coin(int aValue, String aName) {
+		this.setaValue(aValue);
+		this.aName = aName;
+	}
+
+	// Returns name of the coin
+	public String getType() {
+		return aName;
+	}
+
+	// Returns the value of the coin
+	public double getValue() {
+		double value = 0;
+		switch (aName) {
+		case "quarter":
+			value = QUARTER_VALUE;
+			break;
+		case "dime":
+			value = DIME_VALUE;
+			break;
+		case "nickle":
+			value = NICKLE_VALUE;
+			break;
+		case "penny":
+			value = PENNY_VALUE;
+			break;
+		}
+
+		return value;
+	}
+
+	public double getaValue() {
+		return aValue;
+	}
+
+	public void setaValue(int aValue) {
+		this.aValue = aValue;
+	}
+
+}
