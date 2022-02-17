@@ -1,0 +1,158 @@
+
+import java.util.Scanner;
+
+/**
+ * compass needle points a given number of degrees away from North, measured
+ * clockwise. Write a Java application that reads the angle and prints out the
+ * nearest compass direction, one of N, NE, E, SE, S, SW, W, NW. In the case of
+ * of a tie, prefer the nearest principal direction (N, S, E, or W).
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Compass {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// Create a scanner object
+		Scanner sc = new Scanner(System.in);
+		// Taking the inputs from a user
+		System.out.println("Enter the angle : "); // Display the angle to enter
+		double angle = sc.nextDouble();
+		if (angle < 0 || angle > 360) { // The angle must be between 0 and 360
+			System.out.println("Invalid input !! Value should fall between 0 to 360 degrees. Thanks!"); // Print out
+																										// invalid input
+																										// if the angle
+																										// is not
+																										// between 0 and
+																										// 360 degrees
+		// The user input the preferred angle and it print out the necessary directions!
+		}
+		if (0 <= angle && angle <= 23.5) {
+			System.out.println("North Direction");
+		} else if (23.5 < angle && angle < 68.5) {
+			System.out.println("North East Direction");
+		} else if (68.5 <= angle && angle <= 113.5) {
+			System.out.println("East Direction");
+		}
+		// The user input the preferred angle and it print out the necessary directions!
+		else if (113.5 < angle && angle < 158.5) {
+			System.out.println("South East Direction");
+		} else if (158.5 <= angle && angle <= 203.5) {
+			System.out.println("South Direction");
+		} else if (203.5 < angle && angle < 248.5) {
+			System.out.println("South West Direction");
+		} else if (248.5 <= angle && angle <= 293.5) {
+			System.out.println("West Direction");
+		} else if (293.5 < angle && angle < 338.5) {
+			System.out.println("North West Direction");
+		} else if (338.5 <= angle && angle <= 360) {
+			System.out.println("North Direction");
+			sc.close();
+		}
+	}
+}
+
+
+
+/**
+ * A Java application that reads in the name and salary of an employee. Here the
+ * salary will dent an hourly wage, such as $9.25. Then ask how many hours the
+ * employee worked in the past week. Be sure to accept fractional hours. Compute
+ * the pay. Any overtime work (over 40 hours per week) is paid at 150% of the
+ * regular wage. Print a paycheck for the employee. In the final solution be
+ * sure to include a Paycheck class.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class PayCheck {
+
+	// PayCheck class
+	public static class Paycheck {
+		String name;
+		double regular_salary;
+		double overtime_pay;
+
+		// constructor
+		public Paycheck(String n, double rs, double op) {
+			name = n;
+			regular_salary = rs;
+			overtime_pay = op;
+		}
+
+		// method to print the paycheck
+		public void print() {
+			System.out.println("name of employee: " + name);
+			System.out.printf("regular salary: $%.2f\n", regular_salary);
+			System.out.printf("overtime pay: $%.2f\n", overtime_pay);
+			System.out.println("---------------------------");
+			System.out.printf("Total salary: $%.2f\n", (regular_salary + overtime_pay));
+		}
+	}
+}
+
+
+
+
+import java.util.Scanner;
+
+import edu.ilstu.it275.lab05.churchill.PayCheck.Paycheck;
+
+/**
+ * A Java application that reads in the name and salary of an employee. Here the
+ * salary will dent an hourly wage, such as $9.25. Then ask how many hours the
+ * employee worked in the past week. Be sure to accept fractional hours. Compute
+ * the pay. Any overtime work (over 40 hours per week) is paid at 150% of the
+ * regular wage. Print a paycheck for the employee. In the final solution be
+ * sure to include a Paycheck class.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class PayCheckTest {
+
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// create a scanner object
+		Scanner sc = new Scanner(System.in);
+
+		// request for name and hours worked
+		System.out.print("Enter employee name: ");
+		String emp_name = sc.nextLine();
+
+		System.out.print("Enter the number of hours worked past week: ");
+		Double hours_worked = sc.nextDouble();
+
+		// computing regular hours
+		double regular_hours = hours_worked;
+		if (regular_hours > 40)
+			regular_hours = 40;
+
+		// computing the pay
+		double pay = regular_hours * 9.25;
+
+		double overtime_hours = 0;
+
+		// computing overtime hours
+		if (hours_worked > 40)
+			overtime_hours = hours_worked - 40;
+
+		// computing overtime of pay
+		double overtime_pay = 1.5 * 9.25 * overtime_hours;
+
+		// create a paycheck object
+		Paycheck pc = new Paycheck(emp_name, pay, overtime_pay);
+
+		// print the paycheck
+		pc.print();
+		sc.close();
+	}
+
+}
+
