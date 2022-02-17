@@ -30,3 +30,206 @@ public class LotteryPrinter {
 	}
 
 }
+
+
+import java.util.Arrays;
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class LastDigitDistribution {
+	
+	private int [] counters;
+	
+	public LastDigitDistribution() {
+		clearCounters();
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		LastDigitDistribution me = new LastDigitDistribution();
+		Sequence seq = new RandomSequence();
+		me.process(seq, 100);
+		System.out.println(Arrays.toString(me.counters));
+		int [] values = seq.values(10);
+		System.out.println("values=" + Arrays.toString(values));
+		
+		me.clearCounters();
+		seq = Sequence.multiplesOf(5);
+		me.process(seq, 20);
+		System.out.println(Arrays.toString(me.counters));
+	    values = seq.values(10);
+		System.out.println("values=" + Arrays.toString(values));
+		
+		
+		me.clearCounters();
+		seq = Sequence.PowersOf(3);
+		me.process(seq, 20);
+		System.out.println(Arrays.toString(me.counters));
+		
+		
+	}
+	
+	public void clearCounters() {
+		counters = new int[10];
+		
+	}
+	
+	
+	public void process (Sequence seq, int nbrValuesToProcess) {
+		
+		for (int i=0; i < nbrValuesToProcess; i++) {
+			int  value = seq.next();
+			//System.out.println("value=" + value);
+			int lastDigit = value % 10;
+			counters[lastDigit]++;
+			
+		}
+			
+	
+	}
+		
+
+}
+
+
+
+/**
+ * @author CHURCHILLS
+ *takes n * multiplier and mult starts at 1
+ */
+public class MultiplesOfSequence implements Sequence {
+	private int nbr;
+	private int multiplier;
+	
+	public MultiplesOfSequence(int n) {
+		nbr = n;
+		multiplier=0;
+		
+	}
+	
+	
+
+	@Override
+	public int next() {
+	    multiplier++;
+	    
+		return nbr * multiplier;
+	}
+
+}
+
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class PowersOfSequence implements Sequence {
+	
+	private int nbr;
+	private int pow;
+	
+	public PowersOfSequence(int p) {
+		nbr = 0;
+		pow = p;
+	}
+
+	@Override
+	public int next() {
+		nbr++;
+		return (int) Math.pow(nbr, pow);
+	}
+
+}
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class RandomSequence implements Sequence {
+
+	@Override
+	public int next() {
+		//return new java.util.Random().nextInt();
+		return (int) (Integer .MAX_VALUE * Math.random());	
+		
+	
+	}
+	
+
+}
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public interface Sequence {
+	public int next ();
+	
+	public static Sequence multiplesOf(int n) {
+		return new MultiplesOfSequence(n);
+	}
+	
+	public static Sequence PowersOf(int p) {
+		return new PowersOfSequence(p);
+	}
+	
+	/**
+	 * 
+	 * @param n
+	 * @return
+	 */
+	
+	public default int [] values(int n) {
+	 
+	    int [] retVal = new int [n];
+	    for (int i=0; i < n; i++) {
+	    	retVal [i] = this.next();	   
+	    	
+}
+	    
+	    return retVal;
+}
+	
+}
+
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class SquareSequence implements Sequence {
+    private int n;
+    
+    public SquareSequence(int x) {
+    	n = x;
+    }
+    
+	@Override
+	public int next() {
+	    n++;
+		return n*n;
+	}
+
+	/**
+	 * @return the n
+	 */
+	public int getN() {
+		return n;
+	}
+
+	@Override
+	public String toString() {
+		return "SquareSequence [n=" + n + "]";
+	}
+
+}
+
+
