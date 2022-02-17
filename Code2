@@ -1,0 +1,140 @@
+public class Employee {
+
+	/**
+	 * Implement a class Employee. An employee has a name (a string) and a salary (a
+	 * double). Provide a constructor with two arguments public Employee(String
+	 * employeeName, double currentSalary) and methods public String getName()
+	 * public double getSalary() public void raiseSalary(double byPercent)
+	 */
+
+	String name;
+	double salary;
+
+	public Employee(String employeeName, double currentSalary) {
+		name = employeeName;
+		salary = currentSalary;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void raiseSalary(double byPercent) {
+		salary = salary + salary * byPercent / 100;
+	}
+
+}
+
+
+/**
+ *These methods return the name and salary, and raise the employee’s salary by a certain
+ percentage
+ */
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class EmployeeTester {
+
+	/**
+	 * Main method
+	 * 
+	 * @param args
+	 */
+
+	public static void main(String[] args) {
+
+		// Display Employee Name
+		// And print out the Employee's salary
+		Employee harry = new Employee("Hacker Harry ", 50000);
+		System.out.println("Employee Name: " + harry.getName());
+		System.out.println("Employee Salary: $" + harry.getSalary());
+
+		// Raise Salary by 10%
+		// And print the raise salary for the employee
+		harry.raiseSalary(10);
+		System.out.println("Raise Salary: $" + harry.getSalary());
+
+	}
+
+}
+
+
+/**
+ * Implement a class Product. A product has a name and a price, for example new
+ *Product("Toaster", 29.95).
+ *Supply methods getName, getPrice, and reducePrice
+ * @author CHURCHILLS
+ *
+ */
+public class Product {
+
+	
+		// A product has a name and a price
+		private String name;
+		private double price;
+
+		// for example newProduct("Toaster", 29.95)
+		public Product(String name, double price)
+		{
+		this.name = name;
+		this.price =price;
+		}
+
+		// Supply methodsgetName, getPrice, and reducePrice.
+		public String getName()
+		{
+		return name;
+		}
+
+		public double getPrice()
+		{
+		return price;
+		}
+
+		public void reducePrice(double amount)
+		{
+		price -= amount;
+		}	
+}
+
+
+/**
+ * Supply a program ProductPrinter that makes two products
+ * prints each name and price, reduces their prices by $5.00
+ * and then prints the prices again
+ * @author CHURCHILLS
+ *
+ */
+public class ProductPrinter {
+
+
+		public static void main(String[]args)
+		{
+		//make two products
+			
+		Product p1= new Product("Toaster", 29.95);
+		Product p2= new Product("Kettle", 49.95);
+
+		//print the name and price
+		System.out.println(p1.getName()+" : $"+p1.getPrice());
+		System.out.println(p2.getName()+" : $"+p2.getPrice());
+
+		//reduce their prices by $5.00
+		p1.reducePrice(5.0);
+		p2.reducePrice(5.0);
+
+		//print the name and price again
+		System.out.println("Prices after reduction by $5.00");
+		System.out.println(p1.getName()+" : $"+p1.getPrice());
+		System.out.println(p2.getName()+" : $"+p2.getPrice());
+
+		}
+
+
+		}
