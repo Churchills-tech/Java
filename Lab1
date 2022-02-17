@@ -1,0 +1,151 @@
+import java.util.Scanner;
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class LengthMeasurement {
+
+	/**
+	 * Start
+	 * 
+	 * Take measurements in meter from user
+	 * 
+	 * Multiply the input value by 0.000621371 to convert it into miles
+	 * 
+	 * Multiply the input value by 3.28084 to convert it into feet
+	 * 
+	 * Multiply the input value by 39.3701 to convert it into inches
+	 * 
+	 * Output all values to the user
+	 * 
+	 * Multiply the input value by 39.3701 to convert it into inches
+	 * 
+	 * Stop
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		// 1 meter = 0.000621371 miles
+		double miles = 0.000621371;
+
+		// 1 meter = 3.28084 feet
+		double feet = 3.28084;
+
+		// 1 meter = 39.3701 inches
+		double inches = 39.3701;
+
+		try (// make a scanner to take user input
+				Scanner sc = new Scanner(System.in)) {
+			// take a measurement in meter from user input
+			System.out.print("Enter measurement in meter: ");
+			double meter = sc.nextDouble();
+
+			// convert this into miles , feet and inches and print it
+			System.out.println(meter + " meter = " + meter * miles + " miles");
+			System.out.println(meter + " meter = " + meter * feet + " feet");
+			System.out.println(meter + " meter = " + meter * inches + " inches");
+		}
+	}
+}
+
+
+/**
+ * A Java application that prompts the user for two times in military format
+ * (0900, 1730) and prints the number of hours and minutes between the two
+ * times. Here is a sample run. User input is underlined. Please enter the first
+ * time: 0900 Please enter the second time: 1730 8 hours 30 minutes Make sure
+ * your application can deal with the case where the first time is later than
+ * the second time (that is the first time is 1730 and the second time is 0900).
+ * In this case, the time difference is 15 hours and 30 minutes.
+ */
+
+public class TimeInterval {
+
+	// Declare variables.
+	int difference;
+
+	// Constructor of the class.
+	public TimeInterval(int time1, int time2) {
+
+		// Calculate the difference
+		difference = timeInMinutes(time2) - timeInMinutes(time1);
+
+		// Check the condition.
+		if (difference < 0)
+
+			// calculate difference
+			difference = difference + (60 * 24);
+	}
+
+	// Definition of the method.
+	private int timeInMinutes(int time) {
+
+		// Return value.
+		return (time / 100) * 60 + (time % 100);
+	}
+
+	// Definition of the method.
+	public int getHours() {
+
+		// Return value.
+		return difference / 60;
+	}
+
+	// Definition of the method.
+	public int getMinutes() {
+
+		// Return value.
+		return difference % 60;
+
+	}
+
+}
+
+
+import java.util.Scanner;
+
+/**
+ * A Java application that prompts the user for two times in military format
+ * (0900, 1730) and prints the number of hours and minutes between the two
+ * times. Here is a sample run. User input is underlined. Please enter the first
+ * time: 0900 Please enter the second time: 1730 8 hours 30 minutes Make sure
+ * your application can deal with the case where the first time is later than
+ * the second time (that is the first time is 1730 and the second time is 0900).
+ * In this case, the time difference is 15 hours and 30 minutes.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class TimeIntervalPrinter {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		// Declare the object of scanner class.
+		Scanner input = new Scanner(System.in);
+
+		// prompt the user to enter first time
+		System.out.print("Please enter the first time: ");
+
+		// input value.
+		int t1 = input.nextInt();
+
+		// Prompt the user to enter the second time.
+		System.out.print("Please enter the second time: ");
+
+		// input value.
+		int t2 = input.nextInt();
+
+		// Declare the object of the class.
+		TimeInterval T_inter = new TimeInterval(t1, t2);
+
+		// Display the statement on console.
+		System.out.println(T_inter.getHours() + " hours " + T_inter.getMinutes() + " minutes");
+		input.close();
+	}
+}
+
