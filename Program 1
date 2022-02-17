@@ -1,0 +1,617 @@
+import java.util.Date;
+
+/**
+ * An Appointment class which is the superclass to inherits from
+ * 
+ * @author CHURCHILLS
+ *
+ */
+//Class Appointment
+public class Appointment {
+	protected String description;
+	protected Date date;
+
+	public Appointment(String description, Date date) {
+		this.description = description;
+		this.date = date;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String toString() {
+		return "Appointment [description=" + description + ", date=" + date + ", getDescription()=" + getDescription()
+				+ ", getDate()=" + getDate() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+}
+
+
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * An AppointmentMain that tests for superclass and all the subclasses namely;
+ * Appointment, OneTime, and Monthly
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class AppointmentMain {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		List<Appointment> appointments = new ArrayList<>();
+		appointments.add(new Appointment("see doctor", new GregorianCalendar(2021, 04, 15).getTime()));
+		appointments.add(new Appointment("glocery store vist", new GregorianCalendar(2021, 05, 11).getTime()));
+		appointments.add(new Appointment("Visit the Cinema", new GregorianCalendar(2021, 4, 10).getTime()));
+		appointments.add(new Appointment("Dentist Vist", new GregorianCalendar(2021, 06, 23).getTime()));
+		appointments.add(new Appointment("Take Partner Out for Dinner", new GregorianCalendar(2021, 07, 26).getTime()));
+		// scanner object
+		Scanner in = new Scanner(System.in);
+		// Display date format for the user
+		System.out.print("Enter a date in format (YYYY MM DD): ");
+		int year = Integer.parseInt(in.next());
+		int month = Integer.parseInt(in.next());
+		int day = Integer.parseInt(in.next());
+		System.out.print("Select one option below:" + "\n1. One Time" + "\n2. Day or date of the month"
+				+ "\n3. Monthly or month of the year" + "\nSelect one option (a,b,c): ");
+		String choice = in.next();
+		in.close();// close scanner
+
+		List<Appointment> occuringApps = new ArrayList<Appointment>();
+		if (choice.equals("1")) {
+			for (Appointment appointment : appointments) {
+				OneTime app = new OneTime(appointment.description, appointment.date);
+				if (app.OccursOn(year, month, day)) {
+					occuringApps.add(appointment);
+				}
+			}
+		} else if (choice.equals("2")) {
+			for (Appointment appointment : appointments) {
+				Daily app = new Daily(appointment.description, appointment.date);
+				if (app.OccursOn(day)) {
+					occuringApps.add(appointment);
+				}
+			}
+		} else if (choice.equals("3")) {
+			for (Appointment appointment : appointments) {
+				Monthly app = new Monthly(appointment.description, appointment.date);
+				if (app.OccursOn(month)) {
+					occuringApps.add(appointment);
+				}
+			}
+		} else {
+			// Print out the wrong choice
+			System.out.println("Wrong Choice . Please start over!!. ");
+			return;
+		}
+		if (occuringApps.size() > 0) {
+			// Display appointments
+			System.out.println("Below are your appointments: ");
+			for (Appointment appointment : occuringApps) {
+				System.out.println(appointment.description);
+			}
+		} else {
+			// Display no appointment date
+			System.out.println("No appointments on the given date.");
+		}
+	}
+}
+
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.ZoneId;
+
+/**
+ * A Clock class that with getHours and getMinutes methods and returns the
+ * current time
+ * 
+ * @author CHURCHILLS
+ *
+ */
+//class clock
+public class Clock {
+
+	private int hour, minute;
+	private int alarmHour, alarmMin;
+
+	public Clock() {
+		String s = new java.util.Date().toString();
+		hour = Integer.parseInt(s.substring(11, 13));
+		minute = Integer.parseInt(s.substring(14, 16));
+		alarmHour = -1;
+		alarmMin = -1;
+	}
+
+	public void setAlarm(int hours, int mins) {
+		alarmHour = hours;
+		alarmMin = mins;
+	}
+
+	public int getMinute() {
+		return minute;
+	}
+
+	public int getHour() {
+		return hour;
+	}
+
+	public String getTime() {
+		String s = "";
+		String Hr = Integer.toString(getHour());
+		if (Hr.length() == 1) {
+			s = s + "0" + Hr + ":";
+		} else {
+			s = s + Hr + ":";
+		}
+
+		String min = Integer.toString(getMinute());
+		if (min.length() == 1) {
+			s = s + "0" + min;
+		} else {
+			s = s + min;
+		}
+
+		if ((alarmHour != -1) && (getHour() >= alarmHour) && (getMinute() >= alarmMin)) {
+			s = s + " Alarm!";
+			alarmHour = -1;
+			alarmMin = -1;
+		}
+		return s;
+	}
+
+	public int getAlarmHour() {
+		return alarmHour;
+	}
+
+	public void setAlarmHour(int alarmHour) {
+		this.alarmHour = alarmHour;
+	}
+
+	public int getAlarmMin() {
+		return alarmMin;
+	}
+
+	public void setAlarmMin(int alarmMin) {
+		this.alarmMin = alarmMin;
+	}
+
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+
+	@Override
+	public String toString() {
+		return "Clock [hour=" + hour + ", minute=" + minute + ", alarmHour=" + alarmHour + ", alarmMin=" + alarmMin
+				+ ", getMinute()=" + getMinute() + ", getHour()=" + getHour() + ", getTime()=" + getTime()
+				+ ", getAlarmHour()=" + getAlarmHour() + ", getAlarmMin()=" + getAlarmMin() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
+	public String currentTime() {
+		return LocalTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toString();
+	}
+}
+
+
+/**
+ * A ClockMain class that tests for the actual clock
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class ClockMain {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		Clock c1 = new Clock();
+
+		Clock wc = new WorldClock(4);
+		// Display Clock
+		System.out.println("Clock: " + c1.getTime());
+		// Display world clock
+		System.out.println("WorldClock: " + wc.getTime());
+
+		c1.setAlarm(4, 2);
+
+		System.out.println(c1.getTime());
+
+		wc.setAlarm(8, 2);
+
+		System.out.println(wc.getTime());
+
+	}
+
+}
+
+import java.util.Calendar;
+import java.util.Date;
+public class Daily extends Appointment {
+
+	   public Daily(String description, Date date) {
+	       super(description, date);
+	   }
+
+	   public boolean OccursOn(int day) {
+	       Calendar cal = Calendar.getInstance();
+	       cal.setTime(this.date);
+
+	       if (cal.get(Calendar.DAY_OF_MONTH) == day) {
+	           return true;
+	       } else {
+	           return false;
+	       }
+	   }
+	}
+
+
+import java.util.Calendar;
+/**
+ * A Monthly class that extends the superclass Appointment
+ * @author CHURCHILLS
+ */
+import java.util.Date;
+
+//Monthly class extends Appointment
+public class Monthly extends Appointment {
+
+	public Monthly(String description, Date date) {
+		super(description, date);
+	}
+
+	public boolean OccursOn(int month) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(this.date);
+
+		if (cal.get(Calendar.MONTH) == month) {
+			// return true
+			return true;
+		} else {
+			// return false
+			return false;
+		}
+	}
+}
+
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * An OneTime class that extends superclass Appointment
+ * 
+ * @author CHURCHILLS
+ *
+ */
+//OneTime extends superclass Appointment
+public class OneTime extends Appointment {
+
+	public OneTime(String description, Date date) {
+		super(description, date);
+	}
+
+	public boolean OccursOn(int year, int month, int day) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(this.date);
+		if (cal.get(Calendar.YEAR) == year && cal.get(Calendar.MONTH) == month
+				&& cal.get(Calendar.DAY_OF_MONTH) == day) {
+			return true;
+		} else {
+			// return false
+			return false;
+		}
+	}
+}
+
+
+/**
+ * A WorldClock that extends the superclass Clock
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class WorldClock extends Clock {
+
+	private int hour, minute;
+
+	private int offset;
+
+	public WorldClock(int offset) {
+
+		super();
+
+		hour = (super.getHour() + offset) % 24;
+
+		minute = super.getMinute();
+
+		this.setOffset(offset);
+
+	}
+
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+
+	public int getMinute() {
+
+		return this.minute;
+
+	}
+
+	public int getHour() {
+
+		return this.hour;
+
+	}
+
+	public void setAlarm(int hours, int mins) {
+
+		super.setAlarm(hours, mins);
+
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+}
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class AccountingFormatter implements NumberFormatter {
+
+	/**
+	 * AccountingFormatter class that implements NumberFormatter interface
+	 */
+	public AccountingFormatter() {
+
+	}
+
+	@Override
+	public String format(int n) {
+		if (n < 0) {
+			// putting the parenthesis if the number is negative
+			return String.format("(%d)", Math.abs(n));
+		} else {
+			// else use default formatting
+			return String.format("%d", n);
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return "AccountingFormatter [toString()=" + super.toString() + "]";
+	}
+
+}
+
+/**
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class DecimalSeparatorFormatter implements NumberFormatter {
+	/**
+	 * DecimalSeparatorFormatter class that implements NumberFormatter interface
+	 */
+
+	public DecimalSeparatorFormatter() {
+
+	}
+
+	@Override
+	public String format(int n) {
+		// using comma to separate thousands of the number given
+		return String.format("%,d", n);
+	}
+
+	@Override
+	public String toString() {
+		return "DecimalSeparatorFormatter [toString()=" + super.toString() + "]";
+	}
+
+}
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class DefaultFormatter implements NumberFormatter {
+
+	/**
+	 * DefaultFormatter class that implements NumberFormatter interface
+	 * 
+	 */
+	public DefaultFormatter() {
+
+	}
+
+	@Override
+	public String format(int n) {
+		// using default formatting
+		return String.valueOf(n);
+	}
+
+	@Override
+	public String toString() {
+		return "DefaultFormatter [getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+}
+
+/**
+ * NumberFormatter interface that three classes will implements from
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public interface NumberFormatter {
+
+	String format(int n);
+
+}
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class NumberFormatterTester {
+
+	/**
+	 * A NumberFormatterTester that tests for DefaultFormatter, AccountingFormatter
+	 * and DecimalSeparatorFormatter
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// creating the three given formatters
+		NumberFormatter def = new DefaultFormatter();
+		NumberFormatter acc = new AccountingFormatter();
+		NumberFormatter dec = new DecimalSeparatorFormatter();
+
+		// testing and formatting different numbers using the above formatters
+		System.out.println(def.format(4500));
+		System.out.println(dec.format(4500));
+		System.out.println(dec.format(1000000));
+		System.out.println(acc.format(11));
+		System.out.println(acc.format(-11));
+
+	}
+
+}
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class PrimeSequence implements Sequence {
+
+	/**
+	 * PrimeSequence class that implements Sequence Interface
+	 * 
+	 */
+	public PrimeSequence() {
+
+	}
+
+	int presentPrime = 1;
+
+	@Override
+	public int next() {
+		presentPrime++;
+		if (isPrime(presentPrime))
+			return presentPrime;
+		return next();
+	}
+
+	/**
+	 * @return the presentPrime
+	 */
+	public int getPresentPrime() {
+		return presentPrime;
+	}
+
+	/**
+	 * @param presentPrime the presentPrime to set
+	 */
+	public void setPresentPrime(int presentPrime) {
+		this.presentPrime = presentPrime;
+	}
+
+	public boolean isPrime(int n) {
+		for (int i = 2; i <= Math.sqrt(n); i++)
+			if (n % i == 0)
+				return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "PrimeSequence [presentPrime=" + presentPrime + "]";
+	}
+
+}
+
+
+/**
+ * Sequence interface which PrimeSequence implements from
+ * 
+ * @author CHURCHILLS
+ *
+ */
+//Sequence interface
+public interface Sequence {
+
+	public int next();
+
+}
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class SequenceTester {
+
+	/**
+	 * SequenceTester class that tests for the prime numbers
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		PrimeSequence seq = new PrimeSequence();
+		// Print out the sequence of prime numbers
+		System.out.println(seq.next());
+		System.out.println(seq.next());
+		System.out.println(seq.next());
+		System.out.println(seq.next());
+		System.out.println(seq.next());
+		System.out.println(seq.next());
+
+	}
+
+}
+
+
