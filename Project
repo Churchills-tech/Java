@@ -1,0 +1,738 @@
+/**
+ * @author CHURCHILLS
+ *
+ */
+import java.time.LocalDate;
+
+public class DateCalendarWeek {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+//      Get date of Pi day
+		LocalDate piDay = LocalDate.of(2021, 3, 14);
+
+//      Get the weekday of "Pi day"
+		String weekDayPi = piDay.getDayOfWeek().toString();
+
+//      Get date of first day of the year
+		LocalDate firstDay = LocalDate.of(2021, 1, 1);
+
+//      Add 255 days to the first day of the year
+//      to get programmer's day's date
+//      255, because the 1st day is 1/1/2021
+		LocalDate programmersDay = firstDay.plusDays(256 - 1);
+
+//      Get weekday of programmer's day
+		String weekDayProgrammer = programmersDay.getDayOfWeek().toString();
+
+//      Get today's date
+		LocalDate today = LocalDate.now();
+
+//      Minus 10000 days from today's date
+		LocalDate todayMinus10000 = today.minusDays(10000);
+
+//      Get weekday of the date that is 10000 days earlier
+//      than today
+		String weekDayTodayMinus10000 = todayMinus10000.getDayOfWeek().toString();
+
+//      Print all the information
+		System.out.println("The weekday of 'Pi day' is: " + weekDayPi);
+		System.out.println("\nThe date of Programmer's day: " + programmersDay);
+		System.out.println("The weekday of Programmer's day: " + weekDayProgrammer);
+		System.out.println("\nThe date that is 10000 days earlier than today: " + todayMinus10000);
+		System.out.println("The weekday of the date that is 10000 days earlier than today: " + weekDayTodayMinus10000);
+	}
+
+}
+
+
+public class Person {
+	
+
+	public void eat (int howMuchToEat) {
+		// the method body (our logic goes)
+	}
+	
+	public int getNetworth() {
+		int myNetWorth = 100;
+		return myNetWorth;
+	}
+		
+	
+	public void updateAddress(String newAddress) {
+}
+
+	public int addTwoNumbers(int a, int b) {
+		
+		int retVal = 0;
+		
+		retVal = a + b;
+		
+		return retVal;
+	
+	}
+		
+}
+
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class PersonTest {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		Person me = new Person();
+		
+		int myNetWorth = me.getNetworth();
+		
+		System.out.println("my net worth is " + myNetWorth);
+		
+		System.out.println("net worth check is " + me.getNetworth());
+		
+		int sum = me.addTwoNumbers(10, 20);
+		System.out.println("the sum is " + sum);
+	}
+	
+
+}
+
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.LayoutManager;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+/**
+* This is a TrafficLightPanel
+* with a paint method
+* which shows all three traffic lights (Red, Green and Yellow)
+*  
+*/
+
+public class TrafficLightPanel extends JPanel {
+
+	private static final long serialVersionUID = 12345;
+	private static final int PANEL_HEIGHT = 400;
+	private static final int PANEL_WIDTH = 400;
+	
+	public TrafficLightPanel() {
+	
+		setPreferredSize(new Dimension(PANEL_HEIGHT, PANEL_WIDTH));
+		setBackground(Color.WHITE);
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		// PUT CODE HERE TO PAINT CIRCLES & RETANGLES!
+		//Draw red light
+		g.drawRect(10, 10, 70, 70);
+		g.setColor(Color.RED);
+		g.fillOval(10, 10, 70, 70);
+		
+		//Draw Yellow light
+        g.setColor(Color .YELLOW);
+	    g.fillOval(10, 90, 70, 70);
+	    g.setColor(Color .BLACK);
+		g.drawRect(10, 90, 70, 70);
+		
+		// Draw Green light
+		 g.setColor(Color .GREEN);
+		 g.fillOval(10, 170, 70, 70);
+		 g.setColor(Color.BLACK);
+		 g.drawRect(10, 170, 70, 70);
+
+		
+	}
+	
+	/**
+	 * @param layout
+	 */
+	public TrafficLightPanel(LayoutManager layout) {
+		super(layout);
+	}
+
+	/**
+	 * @param isDoubleBuffered
+	 */
+	public TrafficLightPanel(boolean isDoubleBuffered) {
+		super(isDoubleBuffered);
+	}
+
+	/**
+	 * @param layout
+	 * @param isDoubleBuffered
+	 */
+	public TrafficLightPanel(LayoutManager layout, boolean isDoubleBuffered) {
+		super(layout, isDoubleBuffered);
+	}
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Window Title Here");
+		TrafficLightPanel panel = new TrafficLightPanel();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
+		frame.pack();
+		frame.setVisible(true);
+	}	
+	
+}
+
+
+/**
+ * A balloon starts out with radius 0. Supply a method public void
+ * inflate(double amount) that increases the radius by the given amount Supply a
+ * method public double getVolume() that returns the current volume of the
+ * balloon
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Balloon {
+
+	private double radius;
+
+	// constructor to initialize radius to 0
+	public Balloon() {
+		radius = 0;
+	}
+
+	public void inflate(double amount) {
+		// increases the radius by the given amount
+		radius += amount;
+	}
+
+	public double getVolume() {
+		// returns the current volume of the balloon = 4.0/3.0 * PI * r^3
+		return ((double) 4.0 / 3.0) * Math.PI * radius * radius * radius;
+	}
+}
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class BalloonBatteryTesting {
+
+	/**
+	 * This is the main class for testing both the balloon and battery respectively
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		// testing Balloon class
+		System.out.println("----Balloon class test----");
+		Balloon b = new Balloon();
+		System.out.println("Initial Volume: " + b.getVolume());
+		b.inflate(10);
+		System.out.println("Volume after inflate(10): " + b.getVolume());
+		System.out.println();
+
+		// testing Battery class
+		System.out.println("----Battery class test----");
+		Battery bat = new Battery(2500);
+		System.out.println("Initial remaining capacity: " + bat.getRemainingCapacity() + " mAh");
+		bat.drain(1000);
+		System.out.println("After draining 1000 mAh: " + bat.getRemainingCapacity() + " mAh");
+		bat.charge();
+		System.out.println("After charging: " + bat.getRemainingCapacity() + " mAh");
+	}
+
+}
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class Battery {
+	// instance variables to store original capacity and remaining capacity
+	private double originalCapacity;
+	private double remainingCapacity;
+
+	// constructor to initialize capacity
+	public Battery(double capacity) {
+		originalCapacity = capacity;
+		remainingCapacity = capacity;
+	}
+
+	public void drain(double amount) {
+		// drains the capacity of the battery by the given amount
+		remainingCapacity -= amount;
+	}
+
+	public void charge() {
+		// charges the battery to its original capacity
+		remainingCapacity = originalCapacity;
+	}
+
+	public double getRemainingCapacity() {
+		// gets the remaining capacity of the battery
+		return remainingCapacity;
+	}
+
+}
+
+
+/**
+ * This class models a simple letter. In the constructor, supply the names of
+ * the sender and the recipient: public Letter(String from, String to) Supply a
+ * method public void addLine(String line) to add a line of text to the body of
+ * the letter. Supply a method public String getText() that returns the entire
+ * The text has the form: Dear recipient name: blank line first line of the body
+ * second line of the body . . . last line of the body blank line Sincerely,
+ * blank line sender name text of the letter
+ */
+public class Letter {
+
+	// attributes to store from, to and contents
+	private String from;
+	private String to;
+	private String contents;
+
+	/**
+	 * Constructs a letter with a given sender and recipient.
+	 * 
+	 * @param from the sender
+	 * @param to   the recipient
+	 */
+	public Letter(String from, String to) {
+		this.from = from;
+		this.to = to;
+		this.contents = "";
+	}
+
+	/**
+	 * Adds a line to the body of this letter.
+	 */
+	public void addLine(String line) {
+		this.contents = this.contents + "\n" + line;
+	}
+
+	/**
+	 * Gets the text of this letter.
+	 */
+	public String getText() {
+		return "Dear " + to + ":\n" + contents + "\n\nSincerely,\n\n" + from;
+	}
+
+}
+
+
+/**
+ * Also supply a class LetterPrinter that prints this letter.
+ *Dear John:
+ *I am sorry we must part.
+ *I wish you all the best.
+ *Sincerely,
+ *Mary
+ *Construct an object of the Letter class and call addLine twice. Hints: (1) Use the concat method
+ *to form a longer string from two shorter strings. (2) The special string "\n" represents a new line.
+ *For example, the statement body = body.concat("Sincerely,").concat("\n"); adds a line containing
+ *the string "Sincerely," to the body.
+ */
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class LetterPrinter {
+
+	/**
+	 * @param args the command line arguments
+	 */
+	public static void main(String[] args) {
+
+		// Creating an object of our Letter class.
+		Letter letter = new Letter("Mary", "John");
+
+		// Calling the method within class to add line
+		letter.addLine("I'm sorry we must part.");
+		letter.addLine("I wish you all the best.");
+		// Printing all the information gathered so far.
+		System.out.print(letter.getText());
+
+	}
+
+}
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class CircuitTester {
+
+	/**
+	 * A CircuitTester class that tests all switch combinations, printing out actual
+	 * and expected states for the switches and light.
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		ThreeWaySwitch obj = new ThreeWaySwitch(0, 0);
+		// Testing the ThreeWaySwitch class
+		// condition 1
+
+		System.out.println("First Switch: " + obj.getFirstSwitchState());
+		System.out.println("Second Switch: " + obj.getSecondSwitchState());
+		System.out.println("Light State: " + (obj.getLightState() == 1 ? "ON" : "OFF"));
+		System.out.println();
+
+		// condition 2
+		obj.toggleFirstSwitch();
+		System.out.println("First Switch: " + obj.getFirstSwitchState());
+		System.out.println("Second Switch: " + obj.getSecondSwitchState());
+		System.out.println("Light State: " + (obj.getLightState() == 1 ? "ON" : "OFF"));
+		System.out.println();
+
+		// condition 3
+		obj.toggleFirstSwitch();
+		obj.toggleSecondSwitch();
+		System.out.println("First Switch: " + obj.getFirstSwitchState());
+		System.out.println("Second Switch: " + obj.getSecondSwitchState());
+		System.out.println("Light State: " + (obj.getLightState() == 1 ? "ON" : "OFF"));
+		System.out.println();
+
+		// condition 4
+		obj.toggleFirstSwitch();
+		System.out.println("First Switch: " + obj.getFirstSwitchState());
+		System.out.println("Second Switch: " + obj.getSecondSwitchState());
+		System.out.println("Light State: " + (obj.getLightState() == 1 ? "ON" : "OFF"));
+		System.out.println();
+
+	}
+}
+
+public class RaceWalker {
+	/**
+	 * A class RaceWalker that models a race walker moving along a horizontal line.
+	 * The race walker moves either to the right or left. Initially, the race walker
+	 * moves to the right, but it can turn to change its direction. In each move,
+	 * its position changes by one unit in the current direction. Provide a
+	 * constructor: public RaceWalker(int initialPosition) and methods: public void
+	 * turn() public void move() public int getPosition()
+	 * 
+	 */
+	private int position;
+	private int direction = 1;
+
+	public RaceWalker(int position) {
+		this.position = position;
+	}
+
+	public void turn() {
+		direction = (direction == 1) ? -1 : 1;
+	}
+
+	public void move() {
+		position += direction;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+}
+
+
+/**
+ * @author CHURCHILLS
+ *
+ */
+public class RaceWalkerTester {
+
+	/**
+	 * Sample usage: RaceWalker rw = new RaceWalker(10) rw.move(); // now is at
+	 * position 11 rw.turn(); rw.move(); // now is at position 10 RaceWalkterTester
+	 * should construct a race walker, make it move and turn a few times, and print
+	 * the actual and expected position. RaceWalkterTester should construct a race
+	 * walker, make it move and turn a few times, and print the actual and expected
+	 * position.
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		RaceWalker rw = new RaceWalker(10);
+		System.out.println("Current Position : " + rw.getPosition());
+		System.out.println("Moving");
+		rw.move();
+		System.out.println("Current Position : " + rw.getPosition());
+		System.out.println("Turning");
+		rw.turn();
+		System.out.println("Moving");
+		rw.move();
+		System.out.println("Current Position : " + rw.getPosition());
+
+	}
+
+}
+
+
+public class ThreeWaySwitch {
+	/**
+	 * Simulate a circuit for controlling a hallway light that has switches at both
+	 * ends of the hallway. Each switch can be up or down, and the light can be on
+	 * or off. Toggling either switch turns the light on or off. Provide each of the
+	 * following methods methods: public int getFirstSwitchState() // 0 for down
+	 * (off), 1 for up (on) public int getSecondSwitchState() // 0 for down (off), 1
+	 * for up (on) public int getLightState() // 0 for off, 1 for on public void
+	 * toggleFirstSwitch() public void toggleSecondSwitch() public int
+	 * getSwitchState(int switch) public void toggleSwitch(int switch)
+	 */
+	// instance variables
+	private int firstSwitchState = 0, secondSwitchState = 0;
+
+	// parameterized constructor
+	public ThreeWaySwitch(int firstSwitchState, int secondSwitchState) {
+		this.firstSwitchState = firstSwitchState;
+		this.secondSwitchState = secondSwitchState;
+	}
+
+	// getters
+	public int getFirstSwitchState() {
+		return firstSwitchState;
+	}
+
+	public int getSecondSwitchState() {
+		return secondSwitchState;
+	}
+
+	// getting light state
+	public int getLightState() {
+		return firstSwitchState + secondSwitchState;
+	}
+
+	public void toggleFirstSwitch() {
+		// changing switch state using this formula
+		firstSwitchState = (1 + firstSwitchState) % 2;
+	}
+
+	public void toggleSecondSwitch() {
+		secondSwitchState = (1 + secondSwitchState) % 2;
+	}
+}
+
+import java.util.Scanner;
+
+/**
+ * A Java application that prompts the user for a year and prints the month and
+ * day of Easter Sunday. Easter Sunday is the first Sunday after the first full
+ * moon of spring. To compute the date, an algorithm, invented by the
+ * mathematician Carl Friedrich Gauss in 1800 can be used. Let y be the year
+ * (such as 2001) Divide y by 19 and call the reminder a. Ignore the quotient.
+ * Divide y by 100 to get a quotient b and a remainder c Divide b by 4 to get a
+ * quotient d and a remainder e Divide 8 * b + 13 by 25 to get a quotient g.
+ * Ignore the remainder Divide 19 * a + b - d - g + 15 by 30 to get a remainder
+ * h. Ignore the quotient Divide c by 4 to get a quotient j and a reminder k
+ * Divide a + 11 * h by 319 to get a quotient m. Ignore the remainder Divide 2 *
+ * e + 2 * j - k - h + m + 32 by 7 to get a remainder r. Ignore the quotient
+ * Divide h - m + r + 90 by 25 to get a quotient n. Ignore the remainder Divide
+ * h - m + r + n + 19 by 32 to get a remainder p. Ignore the quotient Then
+ * Easter falls on day p of month n. For example, if y is 2001: n = 4 and p =
+ * 15, so in 2001, Easter fell on April 15.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class EasterSunday {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		try (// create scanner object
+				Scanner sc = new Scanner(System.in)) {
+			System.out.print("Enter an year : ");
+
+			int year = sc.nextInt();
+			int a = year % 19;
+			int b = year / 100;
+			int c = year % 100;
+			int d = b / 4;
+			int e = b % 4;
+			int g = (8 * b + 13) / 25;
+			int h = (19 * a + b - d - g + 15) % 30;
+			int j = c / 4;
+			int k = c % 4;
+			int m = (a + 11 * h) / 319;
+			int r = (2 * e + 2 * j - k - h + m + 32) % 7;
+			int n = (h - m + r + 90) / 25;
+			int p = (h - m + r + n + 19) % 32;
+			if (n == 1)
+				// Testing the year, date and month Easter fell on!
+				System.out.println("In " + year + ", Easter fell on " + "January " + p);
+			else if (n == 2)
+				System.out.println("In " + year + ", Easter fell on " + "February " + p);
+			else if (n == 3)
+				System.out.println("In " + year + ", Easter fell on " + "March " + p);
+			else if (n == 4)
+				System.out.println("In " + year + ", Easter fell on " + "April " + p);
+			else if (n == 5)
+				System.out.println("In " + year + ", Easter fell on " + "May " + p);
+			else if (n == 6)
+				System.out.println("In " + year + ", Easter fell on " + "June " + p);
+			else if (n == 7)
+				System.out.println("In " + year + ", Easter fell on " + "July " + p);
+			else if (n == 8)
+				System.out.println("In " + year + ", Easter fell on " + "August " + p);
+			else if (n == 9)
+				System.out.println("In " + year + ", Easter fell on " + "September " + p);
+			else if (n == 10)
+				System.out.println("In " + year + ", Easter fell on " + "October " + p);
+			else if (n == 11)
+				System.out.println("In " + year + ", Easter fell on " + "November " + p);
+			else if (n == 12)
+				System.out.println("In " + year + ", Easter fell on " + "December " + p);
+		}
+
+	}
+
+}
+
+
+/**
+ * Implement a Triangle class with the appropriate methods to support the
+ * supplied list of triangle properties. Supply a program that prompts a user
+ * for the corner point coordinates. The corner point coordinates are defined by
+ * the x- and y- coordinates of its three corner points. The Triangle class
+ * needs to be able to compute the following properties of a given triangle.
+ * Note: The java Math functions work in angles based on radians, not degrees.
+ * To convert radians to degrees use this formula: angle in degrees = angle in
+ * radians * (180 / 3.1415) The lengths of all sides The angles of all corners
+ * The perimeter The area
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Triangle {
+
+	float x1, x2, x3;
+	float y1, y2, y3;
+
+	Triangle(float a, float b, float c, float d, float e, float f) {
+		this.x1 = a;
+		this.y1 = b;
+		this.x2 = c;
+		this.y2 = d;
+		this.x3 = e;
+		this.y3 = f;
+	}
+
+	public float calculateLength(float x1, float y1, float x2, float y2) {
+		float length = (float) Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+		return Math.round(length);
+	}
+
+	public float calculateAngle(float l1, float l2, float l3) {
+		float angle = (float) Math.acos((l2 * l2 + l3 * l3 - l1 * l1) / (2 * l2 * l3));
+
+		// float angle = l1 + l2 + l3 - (l2 * l3);
+		return (float) (angle * 180 / 3.1415);
+	}
+
+	public float calculatePerimeter(float l1, float l2, float l3) {
+		float perimeter = l1 + l2 + l3;
+		return Math.round(perimeter);
+	}
+
+	public float calculateArea() {
+		float area = Math
+				.abs(this.x1 * (this.y2 - this.y3) + this.x2 * (this.y3 - this.y1) + this.x3 * (this.y1 - this.y2)) / 2;
+		return area;
+	}
+
+}
+
+import java.util.Scanner;
+
+/**
+ * Implement a Triangle class with the appropriate methods to support the
+ * supplied list of triangle properties. Supply a program that prompts a user
+ * for the corner point coordinates. The corner point coordinates are defined by
+ * the x- and y- coordinates of its three corner points. The Triangle class
+ * needs to be able to compute the following properties of a given triangle.
+ * Note: The java Math functions work in angles based on radians, not degrees.
+ * To convert radians to degrees use this formula: angle in degrees = angle in
+ * radians * (180 / 3.1415) The lengths of all sides The angles of all corners
+ * The perimeter The area
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class TriangleTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// x and y coordinated for point A, B and C
+		float xA, yA;
+		float xB, yB;
+		float xC, yC;
+		// create scanner object
+		Scanner sc = new Scanner(System.in);
+		// Testing the various coordinate points!
+		System.out.println("Enter x coordinate for point A: ");
+		xA = sc.nextFloat();
+		System.out.println("Enter y coordinate for point A: ");
+		yA = sc.nextFloat();
+		System.out.println("Enter x coordinate for point B: ");
+		xB = sc.nextFloat();
+		System.out.println("Enter y coordinate for point B: ");
+		yB = sc.nextFloat();
+		System.out.println("Enter x coordinate for point C: ");
+		xC = sc.nextFloat();
+		System.out.println("Enter y coordinate for point C: ");
+		yC = sc.nextFloat();
+
+		Triangle t = new Triangle(xA, yA, xB, yB, xC, yC);
+
+		float lengthAB, lengthBC, lengthAC;
+		lengthAB = t.calculateLength(xA, yA, xB, yB);
+		lengthBC = t.calculateLength(xB, yB, xC, yC);
+		lengthAC = t.calculateLength(xC, yC, xA, yA);
+		// Testing for the length AB,BC and AC!
+		System.out.println("Length of AB is: " + lengthAB);
+		System.out.println("Length of BC is: " + lengthBC);
+		System.out.println("Length of AC is: " + lengthAC);
+
+		float angleA, angleB, angleC;
+		angleA = t.calculateAngle(lengthAB, lengthBC, lengthAC);
+		angleB = t.calculateAngle(lengthBC, lengthAB, lengthAC);
+		angleC = t.calculateAngle(lengthAC, lengthAB, lengthBC);
+		// Testing for the angles A,B and C!
+		System.out.println("Angle A is: " + angleA);
+		System.out.println("Angle B is: " + angleB);
+		System.out.println("Angle C is: " + angleC);
+
+		float perimeter, area;
+		perimeter = t.calculatePerimeter(lengthAB, lengthBC, lengthAC);
+		area = t.calculateArea();
+		// testing the perimeter and area of the triangle
+		System.out.println("Perimeter of triangle is: " + perimeter);
+		System.out.println("Area of triangle is: " + area);
+		sc.close();
+	}
+
+}
+
+
+
+
+
+
+
+
