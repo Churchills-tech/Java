@@ -1,0 +1,34 @@
+ * @author CHURCHILLS
+ *You want to decide whether you should drive your car to work or take the train. 
+ *You know the one-way distance from your home to your place of work (73 miles) , 
+ *and the fuel efficiency of your car (in miles per gallon) (18 MPG).
+  *You also know the one-way price of a train ticket($20.00). 
+  *You assume the cost of gas at $4 per gallon, and car maintenance at 5 cents per mile.
+  *Write an application named TravelDecider to decide which commute is cheaper
+ */
+public class TravelDecider {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		double distance = 73;
+		double gas = 4;
+		double mpg = 18;
+		double carMaintenance = 0.05;
+		double ticketPrice = 20;
+		
+		
+		double cost = (gas/mpg+carMaintenance)* distance;
+		System.out.println("Cost of a car commute is:" + cost);
+		
+		if (cost < ticketPrice) {
+		
+		}
+			System.out.println("Please use your car to commute and save some cents!");
+		
+		
+		}
+
+}
