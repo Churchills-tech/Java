@@ -1,0 +1,241 @@
+/**
+ * An interface that shows the modified Coin implements Comparable
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Coin implements Comparable<Coin> {
+
+	double value;
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private String name;
+
+	/**
+	 * 
+	 * Constructs a coin.
+	 *
+	 * 
+	 * 
+	 * @param aValue
+	 * 
+	 *               the monetary value of the coin
+	 * 
+	 * @param aName
+	 * 
+	 *               the name of the coin
+	 * 
+	 */
+
+	public Coin(double aValue, String aName) {
+
+		value = aValue;
+
+		name = aName;
+
+	}
+
+	/**
+	 * 
+	 * Gets the coin value.
+	 *
+	 * 
+	 * 
+	 * @return the value
+	 * 
+	 */
+
+	public double getValue() {
+
+		return value;
+
+	}
+
+	/**
+	 * 
+	 * Gets the coin name.
+	 *
+	 * 
+	 * 
+	 * @return the name
+	 * 
+	 */
+
+	public String getName() {
+
+		return name;
+
+	}
+
+	@Override
+	public int compareTo(Coin o) {
+		return 0;
+	}
+
+}
+
+
+/**
+ * A CoinModification class that we implements comparable interface from
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class CoinModification {
+	private double value;
+	private String name;
+
+	/**
+	 * Constructs a coin.
+	 * 
+	 * @param aValue the monetary value of the coin
+	 * @param aName  the name of the coin
+	 */
+	public CoinModification(double aValue, String aName) {
+		value = aValue;
+		name = aName;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Gets the coin value.
+	 * 
+	 * @return the value
+	 */
+	public double getValue() {
+		return value;
+	}
+
+	/**
+	 * Gets the coin name.
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+}
+
+
+/**
+ * A CoinTester class that tests the Coin
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class CoinTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Coin c1 = new Coin(0.05, "nickel");
+		Coin c2 = new Coin(0.01, "penny");
+
+		int b = c1.compareTo(c2);
+
+		if (b < 0) {
+			System.out.println("less");
+		} else if (b > 0) {
+
+			System.out.println("more");
+		}
+
+		else {
+			System.out.println("equal");
+			System.out.println("Expected: more");
+		}
+	}
+}
+
+
+/**
+ * An arbitrary sequence interface type with a single method
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public interface Sequence {
+	int next();
+
+	public int[] values(int n);
+
+}
+
+
+import java.util.Arrays;
+
+/**
+ * A SequenceValuesTester that test values of arrays
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class SequenceValuesTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		Sequence sequence = new SquareSequence();
+		int[] array = sequence.values(10);
+		// Print out the values of arrays
+		System.out.println("Values: " + Arrays.toString(array));
+		// Print out the expected array values
+		System.out.println("Expected: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]");
+	}
+}
+
+
+
+/**
+ * A SquareSequence class that implements Sequence interface
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class SquareSequence implements Sequence {
+	// Instance variable
+	private int n;
+
+	public int next() {
+		n++;
+		return n * n;
+	}
+
+	@Override
+	// Constructors and methods
+	public int[] values(int n) {
+		int arr[] = new int[n];
+		for (int i = 1; i <= n; i++)
+			arr[i - 1] = i * i;
+		// Return array
+		return arr;
+	}
+
+	public int getN() {
+		return n;
+	}
+
+	public void setN(int n) {
+		this.n = n;
+	}
+
+}
