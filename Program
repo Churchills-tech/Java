@@ -1,0 +1,939 @@
+import java.util.ArrayList;
+
+public class Loops {
+
+	    public static void main(String[] args) {
+	        ArrayList<Integer> list = new ArrayList<>();
+	        list.add(35);
+	        list.add(20);
+	        list.add(-5);
+	        list.add(45);
+	        list.add(32);
+	        list.add(-18);
+	        int max = Integer.MIN_VALUE;
+	        int count = 0;
+	        for(Integer val: list) {
+	            if(val > max) {
+	                max = val;
+	            }
+	            if(val < 0) {
+	                count++;
+	            }
+	            System.out.print(val + " ");
+	        }
+	        System.out.println("\nMaximum: " + max);
+	        System.out.println("Number of negative elements: " + count);
+	    }
+
+	}
+  
+  
+import java.util.Scanner;
+
+/**
+ * This is MinivanDoors program with a gear setting P R N D 1 2 3 and when you
+ * enter values such as 0 0 0 1 0 1 0 0 P will determine which doors are open or
+ * closed
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class MinivanDoors {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// scanner object
+		Scanner sc = new Scanner(System.in);
+		double left, right, child, master, inleft, inright, outleft, outright;
+		String gear;
+		System.out.print("Please enter the values of different handles,locks and gear shift with space separated:");
+		left = sc.nextInt();
+		right = sc.nextInt();
+		child = sc.nextInt();
+		master = sc.nextInt();
+		inleft = sc.nextInt();
+		inright = sc.nextInt();
+		outleft = sc.nextInt();
+		outright = sc.nextInt();
+		gear = sc.next();
+		// computing if master unlock is on
+		// gear shift is in parked position
+		// child lock off
+		if (gear.equals("P") && master == 1 && child == 0) {
+			// computes for the left door
+			if (left == 1 || inleft == 1 || outleft == 1) {
+				// computes for right door
+				if (right == 1 || inright == 1 || outright == 1)
+					System.out.println("Both doors open.");
+				else
+					System.out.println("Left door opens.");
+			} else if (right == 1 || inright == 1 || outright == 1)
+				System.out.println("Right door opens.");
+
+		} else
+			// print out for all doors
+			System.out.println("Both doors stay closed.");
+		sc.close();
+	}
+
+}
+
+
+import java.util.*;
+public class NumberLoops {
+	public static void readAndDisplay() {
+		Scanner input = new Scanner(System.in);
+		int arr[] = new int[10];
+		System.out.println("Take the input of array: ");
+		for(int i=0;i<10;i++){
+		arr[i]= input.nextInt();
+		}
+		input.close();
+		System.out.println("Print the opposite order of array: ");
+		for(int i=9;i>=0;i--){
+		System.out.println(arr[i]+" ");
+		}
+		}
+		   public static void main(String[] args) {
+		   readAndDisplay();
+		      
+		   }
+		}
+
+public class Numbers {
+	public static void main(String[] args) {
+
+		/* declaring array named a with start index 17 and last index 29 and rest of values as -1 */
+
+		int[] a = {17,-1,-1,-1,-1,-1,-1,-1,-1,29};
+
+		for(int i = 0;i < 10;i++){  
+
+		System.out.println(a[i]); // printing single line values
+
+		}
+
+		}
+
+		}
+    
+    
+import java.util.Scanner;
+
+/**
+ * This is a RomanNumerals program which when you enter a number it prints out
+ * in Roman Numbers
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class RomanNumerals {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		double num;
+		// scanner object
+		Scanner in = new Scanner(System.in);
+		// Print out the number for a user to enter
+		System.out.print("Enter a number: ");
+		num = in.nextInt();
+		// The number should be between 1 and 3999!
+		if (num < 1 || num > 3999)
+			// Print out if number entered is not between 1 and 3999
+			System.out.println("The entered number is invalid. Please try again!");
+		else {
+			double[] numbers = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+			// Numbers listed in Roman numerals
+			String[] romanLetters = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+
+			StringBuilder roman = new StringBuilder();
+			for (int j = 0; j < numbers.length; j++) {
+				while (num >= numbers[j]) {
+					num -= numbers[j];
+					roman.append(romanLetters[j]);
+				}
+			}
+			// Print the Roman numerals for the number entered!
+			System.out.println("Roman Number: " + roman.toString());
+			in.close();
+		}
+	}
+
+}
+
+import java.util.Random;
+
+/**
+ * This is computer extends player which part of the NimGame which the computer
+ * can play from
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class Computer extends Player {
+
+	private int mode;
+
+	public Computer(int mode) {
+		this.mode = mode;
+		if (mode == 0) {
+			// Print out computer is playing smart
+			System.out.println("Computer is playing smart");
+		} else {
+			// Print out computer is playing stupid
+			System.out.println("Computer is playing stupid");
+		}
+	}
+
+	public int getMode() {
+		return mode;
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
+	}
+
+	public void setSelect(int low, int high) {
+		// Random object
+		Random rand = new Random();
+		int smartSelect[] = { 3, 7, 15, 31, 63 };
+		if (this.mode == 0) {
+			if (high <= 3) {
+				super.setSelect(high);
+				return;
+			}
+			for (int j = 0; j < smartSelect.length; j++) {
+				if (smartSelect[j] > high) {
+					low = smartSelect[j - 1];
+					break;
+				}
+			}
+		} else {
+			low = 1;
+			high = high / 2;
+		}
+		super.setSelect(rand.nextInt(high - low) + low);
+	}
+
+}
+
+public class Human extends Player {
+	/**
+	 * This human extends player which is part of the NimGame which the human play
+	 * from.
+	 */
+
+}
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * This is MontyHallParadox program which simulate game show. In each iteration,
+ * randomly pick a door number between 1 and 3 for placing the car. Randomly
+ * have the player pick a door. Randomly have the game show host pick a door
+ * having a goat (but not the door that the player picked). Increment a counter
+ * for strategy 1 if the player wins by switching to the third door, and
+ * increment a counter for strategy 2 if the player wins by sticking with the
+ * original choice. Run 1,000 iterations and print both counters.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class MontyHallParadox {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		Random rand = new Random();
+		try (// For user input
+				Scanner in = new Scanner(System.in)) {
+			double trials = 1000;
+			double plan1 = 0;
+			double plan2 = 0;
+
+			for (int j = 1; j <= trials; j++) {
+
+				System.out.println("\nPick a random door Number to place the car!");
+				// Generate a door among 1 to 3
+				int prize_door = rand.nextInt(3) + 1;
+				System.out.println("Car is placed behind the door!");
+				System.out.println("Player is Picking randomly a door!");
+				int contestant_door = rand.nextInt(3) + 1;
+				// Player chooses a random door
+				System.out.println("Player has picked the door " + contestant_door);
+				// Host choose a random door
+				int montyDoor = rand.nextInt(3) + 1;
+				// Choose door other than prize_door and contestant_door
+				while ((montyDoor == prize_door) || (montyDoor == contestant_door)) {
+					montyDoor = rand.nextInt(3) + 1;
+				}
+
+				System.out.printf("Monty has opened the door %d and it has goat behind it.\n", montyDoor);
+
+				int switchDoor = rand.nextInt(3) + 1;
+				// Choose door other than contestant_door and montyDoor
+				while ((switchDoor == contestant_door) || (switchDoor == montyDoor)) {
+					switchDoor = rand.nextInt(3) + 1;
+				}
+				// Ask player to switch
+				System.out.printf("Do you want to pick door no. %d (yes/no) ?.\n", switchDoor);
+				String choice = in.next();
+
+				if (choice.equals("yes")) {
+					contestant_door = switchDoor;
+					if (contestant_door == prize_door) {
+						System.out.println("Player wins!");
+						plan1++;
+					} else {
+						System.out.println("Player loses!");
+					}
+
+				} else if (choice.equals("no")) {
+					if (contestant_door == prize_door) {
+						System.out.println("Player wins!");
+						plan2++;
+					} else {
+						System.out.println("Player loses!");
+					}
+				} else {
+					System.out.println("Invalid Selection!");
+				}
+				System.out.println("gameplan1 counter: " + plan1);
+				System.out.println("gameplan2 counter: " + plan2);
+
+			}
+		}
+
+	}
+}
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * This is NimGame application in which the computer plays against a human
+ * opponent. Generate a random integer between 10 and 100 to denote the initial
+ * size of the pile. Generate a random integer between 0 and 1 to decide whether
+ * the computer or the human takes the first turn. Generate a random integer
+ * between 0 and 1 to decide whether the computer plays smart or stupid. In
+ * stupid mode, the computer simply takes a random legal value (between 1 and
+ * n/2) from the pile whenever it has a turn. In smart mode, the computer takes
+ * off enough marbles to make the size of the pile a power of two minus 1 - that
+ * is, 3, 7, 15, 31, or 63.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class NimGame {
+	private static int turn = -1;
+
+	private static int pile;
+
+	private static int remainingMarbles;
+
+	private static Human human;
+
+	private static Computer computer;
+
+	private static Scanner keyboard;
+
+	public static void main(String[] args) {
+		// Random object
+		Random rand = new Random();
+		int low, high;
+		if (human == null && computer == null) {
+			low = 10;
+			high = 100;
+			pile = rand.nextInt(high - low) + low;
+
+			if (!validateIntialsize())
+				main(new String[] {});
+			else {
+				// Print out the initial size of the pile of marbles
+				System.out.println("intial size of the pile of marbles is: " + pile);
+				remainingMarbles = pile;
+			}
+
+		}
+		if (turn == -1) {
+			low = 0;
+			high = 2;
+			turn = rand.nextInt(high - low) + low;
+
+			if (turn == 0) {
+				// Print out the first turn of what the computer takes
+				System.out.println("Computer takes the first turn");
+				computer = new Computer(rand.nextInt(high - low) + low);
+			} else {
+				// Print out the first turn of what human takes
+				System.out.println("Human takes the first turn");
+				human = new Human();
+			}
+		}
+
+		if (keyboard == null)
+			keyboard = new Scanner(System.in);
+
+		if (turn == 0) {
+			if (computer == null) {
+				low = 0;
+				high = 2;
+				computer = new Computer(rand.nextInt(high - low) + low);
+			}
+			computer.setSelect(0, remainingMarbles);
+
+			if (!computer.validateSelect(remainingMarbles))
+				main(new String[] {});
+			else {
+				System.out.println("computer choose to take number of marbles : " + computer.getSelect());
+				remainingMarbles = remainingMarbles - computer.getSelect();
+				if (remainingMarbles <= 0) {
+					System.out.println("Hard luck! Computer wins! Try next time");
+					keyboard.close();
+					return;
+				}
+			}
+
+			turn = 1;
+			main(new String[] {});
+
+		} else {
+			System.out.println("please enter how many marbles you want to take");
+			if (human == null)
+				human = new Human();
+			human.setSelect(keyboard.nextInt());
+			if (!human.validateSelect(remainingMarbles)) {
+				System.out.println("Congrats! you win");
+				keyboard.close();
+				return;
+			} else {
+				System.out.println("You choose to take number of marbles : " + human.getSelect());
+				remainingMarbles = remainingMarbles - human.getSelect();
+				turn = 0;
+				main(new String[] {});
+			}
+		}
+
+	}
+
+	public static boolean validateIntialsize() {
+		if (pile >= 10 && pile <= 100) {
+			return true;
+		}
+		return false;
+	}
+}
+
+/**
+ * This is the player where the computer and the human extends from which is
+ * part of the NimGame where the player plays from.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Player {
+	private int select;
+
+	public int getSelect() {
+		return select;
+	}
+
+	public void setSelect(int select) {
+		this.select = select;
+	}
+
+	public boolean validateSelect(int remains) {
+		if (select <= remains) {
+			return true;
+		}
+		return false;
+	}
+
+}
+
+import java.util.Scanner;
+
+/**
+ * Part I A MagicSquare application that reads in 16 values from the keyboard
+ * and tests whether they form a magic square when put into a 4 X 4 array.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class MagicSquare {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// Scanner object
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Please enter n : ");
+
+		int n = sc.nextInt();
+
+		int[][] square = new int[n][n];
+
+		// store data from user
+		// at the position
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print("Enter data at (" + (i) + "," + (j) + ") : ");
+				square[i][j] = sc.nextInt();
+			}
+		}
+		sc.close();
+
+		// print the square
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.printf("%5d", square[i][j]);
+			}
+			System.out.println();
+		}
+		boolean magic_or_not = false;
+
+		for (int i = 0; i < n * n; i++) {
+			// row index
+			int g = i / n;
+			// column index
+			int h = i % n;
+			// if invalid value from magic square
+			if (square[g][h] > n * n || square[g][h] < 1) {
+				System.out.println("Sorry It is not magic square");
+				magic_or_not = true;
+				break;
+			}
+		}
+
+		// all square elements are from 1 to n*n
+		if (magic_or_not == false) {
+			int rsum0 = 0;
+			int csum0 = 0;
+			// sum for first column
+			for (int i = 0; i < n; i++) {
+				csum0 += square[i][0];
+			}
+			// sum for first row
+			for (int i = 0; i < n; i++) {
+				rsum0 += square[0][i];
+			}
+
+			for (int i = 1; i < n; i++) {
+				int sum = 0;
+				// get sum for other row
+				for (int j = 0; j < n; j++) {
+					sum += square[i][j];
+				}
+				// if sum of another row does not same
+				if (rsum0 != sum) {
+					System.out.println("Sorry It is not magic square");
+					magic_or_not = true;
+					break;
+				}
+			}
+
+			// sum of all rows are same
+			if (magic_or_not == false) {
+				for (int i = 1; i < n; i++) {
+					int sum = 0;
+					// get sum for other column
+					for (int j = 0; j < n; j++) {
+						sum += square[j][i];
+					}
+					// if sum of another column does not same
+					if (csum0 != sum) {
+						System.out.println("Sorry It is not magic square");
+						magic_or_not = true;
+						break;
+					}
+				}
+			}
+		}
+
+		if (magic_or_not == false) {
+			int sumd1 = 0;
+			// sum of diagonal 1
+			for (int i = 0; i < n; i++) {
+				sumd1 += square[i][i];
+			}
+
+			int sumd2 = 0;
+			// sum of diagonal 2
+			for (int i = 0; i < n; i++) {
+				sumd2 += square[i][n - i - 1];
+			}
+
+			if (sumd1 != sumd2) {
+				System.out.println("Sorry It is not magic square");
+				magic_or_not = true;
+			}
+		}
+
+		if (magic_or_not == false) {
+			System.out.println("Awesome It is a magic square!");
+		}
+	}
+}
+
+
+import java.util.Scanner;
+
+/**
+ * Part II MagicSquares application whose input is the number n and whose output
+ * is the magic square of order n if n is odd.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class MagicSquares {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// Scanner object
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Please enter n : ");
+		// user input for size
+		int n = sc.nextInt();
+
+		// set row and column
+		int row = n - 1;
+		int col = n / 2;
+
+		int[][] magicSquare = new int[n][n];
+
+		// initialize this magic square
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				magicSquare[i][j] = 0;
+			}
+		}
+
+		// set
+		int k = 1;
+		// previous row and column
+		int prerow = -1;
+		int precol = -1;
+
+		while (k <= n * n) {
+			// if already fill this position
+			if (magicSquare[row][col] != 0) {
+				// previous row decrease by 1 and set to row
+				row = prerow - 1;
+				// previous column set new column
+				col = precol;
+
+				// negative row
+				// -1 set as n-2
+				if (row < 0) {
+					row += n - 1;
+				}
+			} else {
+
+				magicSquare[row][col] = k;
+
+				k++;
+
+				// set previous row and column
+				prerow = row;
+				precol = col;
+
+				// increase row and column
+				row++;
+				col++;
+			}
+			row = row % n;
+			col = col % n;
+		}
+
+		System.out.println("Magic square is :");
+
+		// display the magic square
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.printf("%5d", magicSquare[i][j]);
+			}
+			System.out.println();
+		}
+
+		sc.close();
+	}
+
+}
+
+public class LargeLength {
+
+	public static void main(String[] args) {
+		int a = 2000;
+        int b = -a;
+
+        System.out.println("a - b is " + (a - b));
+        System.out.println("b - a is " + (b - a));
+
+        System.out.println("Integer.compare(a, b) is " + Integer.compare(a, b));
+        System.out.println("Integer.compare(b, a) is " + Integer.compare(b, a));
+        // Note: Integer.compare(b – a) is invalid. because compare takes in 2 values as parameters.
+    }
+
+	}
+  
+  
+/**
+ * A Java application that represents a resistor as a class.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class Resistor {
+
+	private double nominal_resistance;
+	private double tolerance;
+	private double actual_resistance;
+
+	public void Resistance(double nominal_resistance, double tolerance)
+
+	{
+		this.nominal_resistance = nominal_resistance;
+		this.tolerance = tolerance;
+		calculateActualResistance();
+
+	}
+
+	private void calculateActualResistance() {
+		double minResistance, maxResistance;
+		minResistance = nominal_resistance - ((nominal_resistance * tolerance) / 100);
+		maxResistance = nominal_resistance + ((nominal_resistance * tolerance) / 100);
+		actual_resistance = minResistance + (Math.random() * (maxResistance - minResistance));
+
+	}
+
+	public double getNorminalResistance()
+
+	{
+		return nominal_resistance;
+	}
+
+	public double getTolerance() {
+		return tolerance;
+	}
+
+	public double getActualResistance() {
+		return actual_resistance;
+	}
+
+	public double getNominal_resistance() {
+		return nominal_resistance;
+	}
+
+	public void setNominal_resistance(double nominal_resistance) {
+		this.nominal_resistance = nominal_resistance;
+	}
+
+	public double getActual_resistance() {
+		return actual_resistance;
+	}
+
+	public void setActual_resistance(double actual_resistance) {
+		this.actual_resistance = actual_resistance;
+	}
+
+	public void setTolerance(double tolerance) {
+		this.tolerance = tolerance;
+	}
+}
+
+/**
+ * class with a main method that demonstrates that the resistor class works
+ * properly
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class ResistorTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		Resistor resistors[] = new Resistor[10];
+
+		for (int i = 0; i < resistors.length; i++)
+
+		{
+			resistors[i] = new Resistor();
+
+			System.out.printf("\n Actual Resistance for Resistor %d is %.2f ohm", (i + 1),
+					(resistors[i]).getActualResistance());
+		}
+	}
+
+}
+
+
+/**
+ * A ZipCode Class that asks user for a zip code and prints bar code
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class ZipCode {
+	private int zip;
+	private String barCode;
+
+	public ZipCode(int zip) {
+		this.zip = zip;
+		processBarCode();
+	}
+
+	public ZipCode(String barCode) {
+		this.barCode = barCode;
+		processZipCode();
+	}
+
+	public int getZip() {
+		return zip;
+	}
+
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
+
+	public String getBarCode() {
+		return barCode;
+	}
+
+	public void setBarCode(String barCode) {
+		this.barCode = barCode;
+	}
+
+	public String getBarcode() {
+		return barCode;
+	}
+
+	public int getZIPcode() {
+		return zip;
+	}
+
+	private void processZipCode() {
+		zip = 0;
+		for (int i = 1; i < barCode.length() - 1; i += 5) {
+			String bar = barCode.substring(i, i + 5);
+			if (bar.equals("||:::"))
+				zip = 0 + zip * 10;
+			if (bar.equals(":::||"))
+				zip = 1 + zip * 10;
+			if (bar.equals("::|:|"))
+				zip = 2 + zip * 10;
+			if (bar.equals("::||:"))
+				zip = 3 + zip * 10;
+			if (bar.equals(":|::|"))
+				zip = 4 + zip * 10;
+			if (bar.equals(":|:|:"))
+				zip = 5 + zip * 10;
+			if (bar.equals(":||::"))
+				zip = 6 + zip * 10;
+			if (bar.equals("|:::|"))
+				zip = 7 + zip * 10;
+			if (bar.equals("|::|:"))
+				zip = 8 + zip * 10;
+			if (bar.equals("|:|::"))
+				zip = 9 + zip * 10;
+		}
+
+	}
+
+	private void processBarCode() {
+		barCode = "";
+		int zip = this.zip;
+		while (zip > 0) {
+			switch (zip % 10) {
+			case 0:
+				barCode = "||:::" + barCode;
+				break;
+			case 1:
+				barCode = ":::||" + barCode;
+				break;
+			case 2:
+				barCode = "::|:|" + barCode;
+				break;
+			case 3:
+				barCode = "::||:" + barCode;
+				break;
+			case 4:
+				barCode = ":|::|" + barCode;
+				break;
+			case 5:
+				barCode = ":|:|:" + barCode;
+				break;
+			case 6:
+				barCode = ":||::" + barCode;
+				break;
+			case 7:
+				barCode = "|:::|" + barCode;
+				break;
+			case 8:
+				barCode = "|::|:" + barCode;
+				break;
+			case 9:
+				barCode = "|:|::" + barCode;
+				break;
+			}
+			zip = zip / 10;
+		}
+
+		barCode = "|" + barCode + "|";
+	}
+}
+
+
+import java.util.Scanner;
+
+/**
+ * A ZipCodeTester class that test the ZipCode class. This asks the user for a
+ * zip code and print out the bar code
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class ZipCodeTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// scanner object
+		Scanner in = new Scanner(System.in);
+
+		// converts zip code to bar code
+		System.out.println("Enter a ZIP code: ");
+		int zip = in.nextInt();
+		in.nextLine();
+		ZipCode code1 = new ZipCode(zip);
+		System.out.println("The corresponding bar code: ");
+		System.out.println(code1.getBarcode());
+
+		// converts bar code to zip code
+		System.out.println("Now kindly provide a bar code: ");
+		String bar = in.nextLine();
+		ZipCode code2 = new ZipCode(bar);
+		System.out.println("The corresponding ZIP code: ");
+		System.out.println(code2.getZIPcode());
+		in.close();
+	}
+}
+
+
