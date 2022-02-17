@@ -1,0 +1,285 @@
+/**
+ * This is ArrayMethods program that complete tasks for an array of integers.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class ArrayMethods {
+	private int[] values;
+
+	public ArrayMethods(int[] initValues) {
+		values = initValues;
+	}
+
+	// function to swap first and last element
+	public void swapFirstAndLast() {
+		int n = values.length;
+		int temp = values[0];
+		values[0] = values[n - 1];
+		values[n - 1] = temp;
+	}
+
+	// function to shift right
+	public void shiftRight() {
+		int n = values.length;
+		int temp = values[0];
+		int nextval;
+		for (int i = 1; i < n; i++) {
+			nextval = values[i];
+			values[i] = temp;
+			temp = nextval;
+		}
+		values[0] = temp;
+	}
+
+	// function to replace all elements by zero
+	public void replaceEven0() {
+		int n = values.length;
+		for (int i = 0; i < n; i++) {
+			if (values[i] % 2 == 0)
+				values[i] = 0;
+		}
+	}
+
+	// function to remove middle elements
+	public void removeMiddle() {
+		int n = values.length;
+		int newvalues[];
+		if (n % 2 == 0) {
+			newvalues = new int[n - 2];
+			int middle1 = n / 2 - 1;
+			int middle2 = n / 2;
+			int j = 0;
+			for (int i = 0; i < n; i++) {
+				if (i == middle1 || i == middle2) {
+					continue;
+				} else {
+					newvalues[j] = values[i];
+					j++;
+				}
+			}
+		} else {
+			newvalues = new int[n - 1];
+			int middle = n / 2;
+			int j = 0;
+			for (int i = 0; i < n; i++) {
+				if (i == middle) {
+					continue;
+				} else {
+					newvalues[j] = values[i];
+					j++;
+				}
+			}
+		}
+		values = newvalues;
+	}
+
+	// function to move Even elements to front
+	public void moveEven() {
+		int n = values.length;
+		int[] even = new int[n];
+		int[] odd = new int[n];
+		int i = 0, j = 0;
+		for (int w = 0; w < n; w++) {
+			if (values[w] % 2 == 0) {
+				even[i] = values[w];
+				i++;
+			} else {
+				odd[j] = values[w];
+				j++;
+			}
+		}
+		int index = 0;
+		for (int w = 0; w < i; w++) {
+			values[index] = even[w];
+			index++;
+		}
+		for (int w = 0; w < j; w++) {
+			values[index] = odd[w];
+			index++;
+		}
+	}
+
+	// function to find second largest element
+	public int secondlargest() {
+		int n = values.length;
+		int first_largest = Integer.MIN_VALUE;
+		int second_largest = Integer.MIN_VALUE;
+
+		for (int i = 0; i < n; i++) {
+			first_largest = Math.max(first_largest, values[i]);
+		}
+
+		for (int i = 0; i < n; i++) {
+			if (values[i] != first_largest)
+				second_largest = Math.max(second_largest, values[i]);
+		}
+		return second_largest;
+	}
+
+	public boolean isAscending() {
+		int n = values.length;
+		for (int i = 1; i < n; i++) {
+			if (values[i] < values[i - 1])
+				return false;
+		}
+		return true;
+
+	}
+
+	// function which will return true if adjacent duplicates are present
+	public boolean adjacentDuplicate() {
+		int n = values.length;
+		for (int i = 1; i < n; i++) {
+			if (values[i] == values[i - 1])
+				return true;
+		}
+		return false;
+	}
+
+	// function which will return true if duplicates are present
+	public boolean duplicateElements() {
+		int n = values.length;
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = i + 1; j < n; j++) {
+				if (values[i] == values[j])
+					return true;
+
+			}
+		}
+		return false;
+	}
+
+	// function to print out the array elements
+	public void print() {
+		System.out.print("Array elements : ");
+		for (int i = 0; i < values.length; i++) {
+			System.out.print(values[i] + " ");
+		}
+		System.out.println();
+	}
+
+}
+
+
+
+/**
+ * This is ArrayMethods program that complete tasks for an array of integers.
+ * With the ArrayMethodsMain that test and invokes the test class for each of
+ * the array methods.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class ArrayMethodsMain {
+	public static void main(String[] args) {
+		int[] values = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+		System.out.println("Calling array methods of ArrayMethods class and print each results respectvely : ");
+		ArrayMethods arrayMethods = new ArrayMethods(values);
+		arrayMethods.print();
+		arrayMethods.swapFirstAndLast();
+		arrayMethods.print();
+		arrayMethods.shiftRight();
+		arrayMethods.print();
+		arrayMethods.replaceEven0();
+		arrayMethods.print();
+		arrayMethods.removeMiddle();
+		arrayMethods.print();
+		arrayMethods.moveEven();
+		arrayMethods.print();
+		System.out.println("Second Largest : " + arrayMethods.secondlargest());
+		System.out.println(arrayMethods.isAscending());
+		System.out.println(arrayMethods.adjacentDuplicate());
+		System.out.println(arrayMethods.duplicateElements());
+
+	}
+
+}
+
+
+/**
+ * This is a Sequence program that checks whether two sequences have the same
+ * values in the same order.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class Sequence {
+	// instance variable
+	private int[] values;
+
+	// Constructors and methods
+	public Sequence(int size) {
+		values = new int[size];
+	}
+
+	public void set(int i, int n) {
+		values[i] = n;
+	}
+
+	public int get(int i) {
+		return values[i];
+	}
+
+	public int size() {
+		return values.length;
+	}
+
+	public boolean equals(Sequence other) {
+		// variable that store the result of both the sequence are true or not
+		boolean isSame = true;
+
+		// check if the size of both the sequences are equal by calling the size()
+		// method
+		if (this.size() == other.size())
+			// if equal, proceed with further checks
+			for (int i = 0; i < this.size(); i++) {
+				if (this.get(i) != other.get(i)) {
+					isSame = false;
+					break;
+				}
+			}
+		else
+			isSame = false;
+
+		return isSame;
+	}
+}
+
+
+/**
+ * This is a SequenceMain program that checks whether two sequences have the
+ * same values in the same order.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class SequenceMain {
+	public static void main(String[] args) {
+		// create 4 objects of the Sequence class
+		// Sequence q and r are provided the same values
+		// Sequence s and t are not provided the same values
+		Sequence q = new Sequence(2);
+		q.set(0, 10);
+		q.set(1, 20);
+
+		Sequence r = new Sequence(2);
+		r.set(0, 10);
+		r.set(1, 20);
+
+		Sequence s = new Sequence(2);
+		s.set(0, 10);
+		s.set(1, 20);
+
+		Sequence t = new Sequence(2);
+		t.set(0, 10);
+		t.set(1, 2);
+
+		// print out the results
+		System.out.println("q.equals(r) : " + q.equals(r));
+		System.out.println("s.equals(t) : " + s.equals(t));
+	}
+}
+
