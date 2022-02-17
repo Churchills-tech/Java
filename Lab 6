@@ -1,0 +1,233 @@
+/**
+ * Employee Class with a name and salary
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class Employee {
+	// member variables
+	private String name;
+	private double Salary;
+
+	// parameter constructor
+	public Employee(String name, double salary) {
+		this.name = name;
+		this.Salary = salary;
+	}
+
+	// getters and setters
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getSalary() {
+		return Salary;
+	}
+
+	public void setSalary(double salary) {
+		this.Salary = salary;
+	}
+
+	// toString method
+	@Override
+	public String toString() {
+		return "Employee (" + "name='" + name + '\'' + ", Salary=" + Salary + ')';
+	}
+
+}
+
+
+/**
+ * A EmployeeTester Class that test the classes and methods
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class EmployeeTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Employee employee = new Employee("Jerry John", 300000);
+
+		// printing the data of employee by calling toString method
+		System.out.println(employee.toString());
+
+		// creating an instance of Manager class
+		Manager manager = new Manager("Joyce Bruce", 500000, "Secretay");
+
+		// printing the data of manager by calling toString method
+		System.out.println(manager.toString());
+
+		// creating an instance of Executive class
+		Executive executive = new Executive("Matthew Whyte", 800000, "IT");
+
+		// printing the data of executive by calling toString method
+		System.out.println(executive.toString());
+	}
+
+}
+
+
+
+/**
+ * A Executive Class that inherits from Manager
+ * 
+ * @author CHURCHILLS
+ *
+ */
+
+public class Executive extends Manager {
+	// parameter constructor
+	public Executive(String name, double salary, String department) {
+		super(name, salary, department);
+	}
+
+	// toString method
+	@Override
+	public String toString() {
+		return "Executive (" + "name='" + super.getName() + '\'' + ", Salary=" + super.getSalary() + ", department='"
+				+ super.getDepartment() + '\'' + ')';
+	}
+}
+
+
+
+/**
+ * Instructor class which inherits from Person and the Instructor has name, date
+ * of birth and a salary
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Instructor extends Person { // extends - inherits the person class
+	double Salary;
+
+	Instructor(String name, String dob, int sal) {
+		super(name, dob);// arguments of super class
+		this.Salary = sal;
+	}
+
+	// toString method
+	@Override
+	public String toString() {// return the string
+		return Name + " " + Dob + " " + Salary;
+
+	}
+}
+
+
+
+
+/**
+ * A Manager Class which inherits from Employee with an instance variable, named
+ * department, of type String. And toString that prints the manager’s name,
+ * department, and salary.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Manager extends Employee {
+	// member variable
+	private String department;
+
+	// parameter constructor
+	public Manager(String name, double salary, String department) {
+		super(name, salary);
+		this.department = department;
+	}
+
+	// getters and setters
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	// toString method
+	@Override
+	public String toString() {
+		return "Manager (" + "name='" + super.getName() + '\'' + ", Salary=" + super.getSalary() + ", department='"
+				+ department + '\'' + ')';
+	}
+}
+
+
+/**
+ * Superclass Person which has a name and date of birth
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Person {
+	String Name; // name
+	String Dob; // date of birth
+
+	Person(String name, String dob) {// Constructor for person class
+		this.Name = name;
+		this.Dob = dob;
+	}
+
+	// toString method
+	@Override
+	public String toString() {
+		return Name + " " + Dob;
+	}
+
+}
+
+
+/**
+ * A PersonTester class which test for all the classes and methods
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class PersonTester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Person p = new Person("Ben", "09/20/1990");
+		Student s = new Student("Churchill", "05/18/1999", "Information Technology");
+		Instructor i = new Instructor("Jeff", "11/15/1985", 45000);
+		// displaying the data of each object
+		System.out.println(p);
+		System.out.println(s);
+		System.out.println(i);
+	}
+
+}
+
+
+
+/**
+ * A Student Class which inherits from Superclass Person and the student has a
+ * name, date of birth and a major
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class Student extends Person {
+	String Major;
+
+	Student(String name, String dob, String major) {
+		super(name, dob); // arguments of super class
+		this.Major = major;
+	}
+
+	@Override
+	public String toString() {// return the string
+		return Name + " " + Dob + " " + Major;
+	}
+}
+
