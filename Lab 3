@@ -1,0 +1,197 @@
+import java.util.Scanner;
+
+/**
+ * A NumberManipulations with loops that computes The sum of all even numbers
+ * between 2 and 100 (inclusive) The sum of all squares between 1 and 100
+ * (inclusive) All powers of 2 from 2 to the 0th power up to 2 to the 20th power
+ * The sum of all odd numbers between a and b (inclusive), where a and b are
+ * inputs. The sum of all odd digits of an input.
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class NumberManipulations {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		{
+			// looping variable
+			double j;
+			try (// scanner object
+					Scanner sc = new Scanner(System.in)) {
+				System.out.print("\n The sum of all even numbers between 2 and 100 (inclusive) is: ");
+				// declare a variable to store the sum of even numbers and initialize it to 0
+				int sumEven = 0;
+				for (j = 2; j <= 100; j++) {
+					// check if each number between 2 & 100 is even that is divisible by 2
+					if (j % 2 == 0) {
+						sumEven += j;
+					}
+				}
+				System.out.print(sumEven);
+				System.out.print("\n\n The sum of all squares between 1 and 100 (inclusive) is: ");
+				int sumSquares = 0;
+				for (j = 1; j <= 100; j++) {
+					for (int i = 1; j * j <= i; j++) {
+						// check if each number is a square
+						if ((i % j == 0) && (i / j == j)) {
+							sumSquares += i;
+						}
+					}
+				}
+				// print the computed sum (385)
+				System.out.print(sumSquares);
+
+				System.out.print("\n\n All powers of 2 from 2 to the 0th power up to 2 to the 20th power are: ");
+				// any base raise to 0 is 1
+				System.out.println("\n2^0 = 1");
+				for (j = 1; j <= 20; j++) {
+					// Initialize the power variable to 1
+					int power = 1;
+					double temp = j;
+					while (temp != 0) {
+						power *= 2;
+						--temp;
+					}
+					// print the computed power
+					System.out.println("2^" + j + " = " + power);
+				}
+
+				// print the sum of all odd numbers between a and b (inclusive), where a and b
+				// are inputs
+
+				System.out.print("\n The sum of all odd numbers between a and b (inclusive): \n");
+				System.out.print("Enter a: ");
+				double a = sc.nextInt();
+				System.out.print("Enter b: ");
+				double b = sc.nextInt();
+				double sumOdd = 0;
+				for (j = a; j <= b; j++) {
+					if (j % 2 == 1) {
+						// if true add it to the sumOdd
+						sumOdd += j;
+
+					}
+				}
+				System.out.print("The sum of odd numbers between " + a + " and " + b + " is: " + sumOdd);
+
+				// print the sum of all odd digits of an input
+				System.out.print("\n\n Enter a number to compute the sum of all odd digits of the input: ");
+				double num = sc.nextInt();
+				// declare variables to store the last digit of the entered number
+				double last = 0;
+				// declare a variable to store the sum of odd digits and initialize it to 0
+				int sumOddDigit = 0;
+				// loop till no digit is left in the number
+				while (num != 0) {
+					// find the last digit
+					last = num % 10;
+					// check if last digit is odd, that is not divisible by 2
+					if (last % 2 == 1) {
+						sumOddDigit += last;
+					}
+					num = num / 10;
+				}
+				System.out.println("The sum of odd digits of the number entered is: " + sumOddDigit);
+			}
+		}
+	}
+
+}
+
+
+
+import java.util.Scanner;
+
+/**
+ * A StringComputations that reads in a line of input as a string and prints
+ * letter of the string The string, with all vowels (A, E, I, O, U) by an
+ * underscore The number of vowels (A, E, I, O, U) in the string
+ * 
+ * @author CHURCHILLS
+ *
+ */
+public class StringComputations {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int j;
+		// string variable
+		String input;
+		try (// object scanner
+				Scanner sc = new Scanner(System.in)) {
+			// input the string from the user
+			System.out.print("Enter a string: ");
+			input = sc.next();
+		}
+
+		// print only the upper case letters in the string
+		System.out.print("\n The upper case letters in the string are: ");
+		for (j = 0; j < input.length(); j++) {
+			// check each character in the input string to determine whether it is an
+			// upper case letter
+			if (Character.isUpperCase(input.charAt(j)))
+				System.out.print(input.charAt(j) + " ");
+		}
+
+		// print every second letter of the string
+		System.out.print("\n Displaying every second letter of the string: ");
+		for (j = 0; j < input.length(); j++) {
+			if (j % 2 == 1)
+				System.out.print(input.charAt(j));
+			else
+				System.out.print(" ");
+		}
+
+		System.out.print("\n Displaying the string with all vowels (A, E, I, O, U) by an underscore: ");
+		for (j = 0; j < input.length(); j++) {
+
+			// use equals Ignore Case method which returns true if the characters are same
+			// irrespective of its case and print '_' if true
+
+			double c = input.charAt(j);
+			if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' || c == 'a' || c == 'e' || c == 'i' || c == 'o'
+					|| c == 'u')
+				System.out.print("_");
+			else
+				System.out.print(c);
+		}
+
+		int count = 0;
+		for (j = 0; j < input.length(); j++) {
+
+			double d = input.charAt(j);
+			if (d == 'A' || d == 'E' || d == 'I' || d == 'O' || d == 'U' || d == 'a' || d == 'e' || d == 'i' || d == 'o'
+					|| d == 'u')
+				count++;
+		}
+		System.out.print("\n The number of vowels in the entered string is: " + count);
+
+		// print the positions of all vowels (A, E, I, O, U) in the string
+		System.out.print("\n The positions of all vowels in the string are: ");
+		// declare an array to store all positions of the vowels and assign its size to
+		// count
+		int[] positions = new int[count];
+		int w = 0;
+		for (j = 0; j < input.length(); j++) {
+
+			// use equals Ignore Case method which returns true if the characters are same
+			// irrespective of its case and store its position in array!
+
+			double d = input.charAt(j);
+			if (d == 'A' || d == 'E' || d == 'I' || d == 'O' || d == 'U' || d == 'a' || d == 'e' || d == 'i' || d == 'o'
+					|| d == 'u') {
+				positions[w] = j;
+
+				System.out.print(positions[w] + " ");
+				w++;
+			}
+		}
+
+	}
+
+}
